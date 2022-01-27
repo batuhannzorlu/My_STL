@@ -12,6 +12,7 @@
 
 #include "bz_vector.h"
 #include "bz_uniqueptr.h"
+#include "bz_sharedptr.h"
 
 using namespace std;
 
@@ -55,19 +56,33 @@ int main()
 		//	cout << *it;
 		//}
 
-		cout << "" << endl;
+	/*	cout << "" << endl;*/
 
 		/*	a.insert(a.begin() + 3, 7);*/
 		bz_vector<int>::iterator it2 = b.begin();
-		for (; it2 != b.end(); it2++)
-		{
-			cout << *it2;
-		}
+		//for (; it2 != b.end(); it2++)
+		//{
+		//	cout << *it2;
+		//}
 
 		bz_uniqueptr<int>r(1);
+		
 		*r = 12;
-		cout << *r;
+	/*	cout << *r;*/
 
+
+		bz_sharedptr<int>x(1);
+		bz_sharedptr<int>y(1);
+		*x = 5;
+		*y = 8;
+		cout <<x.get()<<endl ;
+		cout << y.get()<<endl;
+		x.swap(y);
+		cout << x.get();
+
+
+		shared_ptr<int> qs(new int);
+	
 	}
 
 

@@ -72,7 +72,7 @@ int main()
 
 	/*	cout << "" << endl;*/
 
-		/*	a.insert(a.begin() + 3, 7);*/
+			a.insert(a.begin() + 3, 7);
 		//bz_vector<int>::iterator it2 = b.begin();
 		//for (; it2 != b.end(); it2++)
 		//{

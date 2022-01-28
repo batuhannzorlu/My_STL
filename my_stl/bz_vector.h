@@ -33,9 +33,9 @@ public:
 	//#########MODIFIERS###################################
 	void push_back(const T& val);
 	void pop_back();
-	void insert(bz_Iterator_forward<T>iterator, const T& val);
-	void erase(bz_Iterator_forward<T>iterator);
-	void erase(bz_Iterator_forward<T>iterator_start, bz_Iterator_forward<T>iterator_end);
+	void insert(const bz_Iterator_forward<T>&iterator, const T& val);
+	void erase(const bz_Iterator_forward<T>&iterator);
+	void erase(const bz_Iterator_forward<T>&iterator_start, const bz_Iterator_forward<T>&iterator_end);
 	void clear();
 	void swap(bz_vector<T>& second_vec);
 	void shrink_to_fit();
@@ -107,7 +107,7 @@ bool bz_vector<T>::IsEmpty() {
 }
 
 template<typename T>
-void bz_vector<T>::insert(bz_Iterator_forward<T>iterator, const T& val) {
+void bz_vector<T>::insert(const bz_Iterator_forward<T>&iterator, const T& val) {
 
 
 	T t_val = val;
@@ -175,7 +175,7 @@ void bz_vector<T>::swap(bz_vector<T>& second_vec) {
 }
 
 template<typename T>
-void bz_vector<T>::erase(bz_Iterator_forward<T>iterator) {
+void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator) {
 
 
 	int _distance= std::distance(this->begin(), iterator);
@@ -185,7 +185,7 @@ void bz_vector<T>::erase(bz_Iterator_forward<T>iterator) {
 	this->current_pos--;
 }
 template<typename T>
-void bz_vector<T>::erase(bz_Iterator_forward<T>iterator_start, bz_Iterator_forward<T>iterator_end) {
+void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator_start, const bz_Iterator_forward<T>&iterator_end) {
 
 }
 template<typename T>

@@ -35,13 +35,16 @@ public:
 	void pop_back();
 	void insert(bz_Iterator_forward<T>iterator, const T& val);
 	void erase(bz_Iterator_forward<T>iterator);
+	void erase(bz_Iterator_forward<T>iterator_start, bz_Iterator_forward<T>iterator_end);
 	void clear();
 	void swap(bz_vector<T>& second_vec);
-
+	void shrink_to_fit();
 
 	//#########ELEMENT-ACCESS###################################
 	T& operator[](int index);
-
+	T front();
+	T back();
+	T at(int index);
 	//########CAPACITY###################################
 	inline bool IsEmpty();
 };
@@ -175,4 +178,28 @@ template<typename T>
 void bz_vector<T>::erase(bz_Iterator_forward<T>iterator) {
 
 
+	int _distance= std::distance(this->begin(), iterator);
+	for (size_t i = _distance; i < current_pos; i++)
+		std::swap(arr[i], arr[i + 1]);
+
+	this->current_pos--;
 }
+template<typename T>
+void bz_vector<T>::erase(bz_Iterator_forward<T>iterator_start, bz_Iterator_forward<T>iterator_end) {
+
+}
+template<typename T>
+void bz_vector<T>::shrink_to_fit() {
+	T* t_arr = new T[current_pos];
+	std::copy(this->arr, this->arr + current_pos, t_arr);
+	this->size = current_pos;
+	delete[]arr;
+	arr = t_arr;
+}
+
+template<typename T>
+T bz_vector<T> ::front() {return arr[0];}
+template<typename T>
+T bz_vector<T> ::back() { return arr[current_pos]; }
+template<typename T>
+T bz_vector<T> ::at(int index) {return arr[index];}

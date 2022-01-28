@@ -28,6 +28,20 @@ int main()
 		a.push_back(2);
 		a.push_back(3);
 		a.push_back(4);
+		a.push_back(5);
+
+		a.erase(a.begin());
+
+
+		//cout << a.size << endl;
+		//a.shrink_to_fit();
+		//cout << a.size<<endl;
+
+		bz_vector<int>::iterator it2 = a.begin();
+		for (; it2 != a.end(); it2++)
+		{
+			cout << *it2;
+		}
 
 		b.push_back(5);
 		b.push_back(6);
@@ -35,7 +49,7 @@ int main()
 		b.push_back(8);
 		b.push_back(9);
 		b.push_back(10);
-	/*	cout << b.current_pos;*/
+		/*	cout << b.current_pos;*/
 		b.swap(a);
 		/*a[2] = 5;*/
 		//a.push_back(5);
@@ -59,30 +73,31 @@ int main()
 	/*	cout << "" << endl;*/
 
 		/*	a.insert(a.begin() + 3, 7);*/
-		bz_vector<int>::iterator it2 = b.begin();
+		//bz_vector<int>::iterator it2 = b.begin();
 		//for (; it2 != b.end(); it2++)
 		//{
 		//	cout << *it2;
 		//}
 
 		bz_uniqueptr<int>r(1);
-		
+
 		*r = 12;
-	/*	cout << *r;*/
+		/*	cout << *r;*/
 
 
 		bz_sharedptr<int>x(1);
 		bz_sharedptr<int>y(1);
 		*x = 5;
 		*y = 8;
-		cout <<x.get()<<endl ;
-		cout << y.get()<<endl;
+	/*	cout << x.get() << endl;
+		cout << y.get() << endl;
 		x.swap(y);
-		cout << x.get();
+		cout << x.get();*/
 
 
 		shared_ptr<int> qs(new int);
-	
+		qs.reset();
+
 	}
 
 

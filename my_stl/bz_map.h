@@ -32,14 +32,6 @@ public:
 	void erase(bz_Iterator_forward<pair<KEY, VALUE>>  position);
 	void erase(bz_Iterator_forward<pair<KEY, VALUE>>  first, bz_Iterator_forward<pair<KEY, VALUE>>  last);
 
-public:
-	struct less_than_key
-	{
-		inline bool operator() (pair<KEY, VALUE>& struct1, pair<KEY, VALUE>& struct2)
-		{
-			return (struct1.first < struct2.first);
-		}
-	};
 
 };
 

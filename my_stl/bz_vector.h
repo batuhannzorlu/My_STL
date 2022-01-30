@@ -190,9 +190,9 @@ void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator) {
 template<typename T>
 void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator_start, const bz_Iterator_forward<T>&iterator_end) {
 	
-	bz_vector<T>::iterator it = iterator_start;
-	for(;  it!= iterator_end; it++)
-		this->erase(it); cout << "a" << endl;
+	//bz_vector<T>::iterator it = iterator_start;
+	//for(;  it!= iterator_end; it++)
+	//	this->erase(it); cout << "a" << endl;
 	
 	
 

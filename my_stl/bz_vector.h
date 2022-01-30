@@ -33,7 +33,7 @@ public:
 	//#########MODIFIERS###################################
 	void push_back(const T& val);
 	void pop_back();
-	void insert(const bz_Iterator_forward<T>&iterator, const T& val);
+	iterator insert(const bz_Iterator_forward<T>&iterator, const T& val);
 	void erase(const bz_Iterator_forward<T>&iterator);
 	void erase(const bz_Iterator_forward<T>&iterator_start, const bz_Iterator_forward<T>&iterator_end);
 	void clear();
@@ -46,7 +46,7 @@ public:
 	T back();
 	T at(int index);
 	//########CAPACITY###################################
-	inline bool IsEmpty();
+	inline bool empty();
 };
 
 //
@@ -101,13 +101,13 @@ void  bz_vector<T>::pop_back() {
 
 }
 template<typename T>
-bool bz_vector<T>::IsEmpty() {
+bool bz_vector<T>::empty() {
 
 	return this->current_pos == 0 ? true : false;
 }
 
 template<typename T>
-void bz_vector<T>::insert(const bz_Iterator_forward<T>&iterator, const T& val) {
+bz_Iterator_forward<T> bz_vector<T>::insert(const bz_Iterator_forward<T>&iterator, const T& val) {
 
 
 	T t_val = val;
@@ -128,6 +128,7 @@ void bz_vector<T>::insert(const bz_Iterator_forward<T>&iterator, const T& val) {
 	for (size_t i = insert_pos; i <= this->current_pos; i++)
 		std::swap(arr[i], t_val);
 
+	return (this->begin() + insert_pos);
 }
 
 template<typename T>
@@ -184,8 +185,16 @@ void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator) {
 
 	this->current_pos--;
 }
+
+// This is a temporary solution. better algorithm will be applied.
 template<typename T>
 void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator_start, const bz_Iterator_forward<T>&iterator_end) {
+	
+	bz_vector<T>::iterator it = iterator_start;
+	for(;  it!= iterator_end; it++)
+		this->erase(it); cout << "a" << endl;
+	
+	
 
 }
 template<typename T>

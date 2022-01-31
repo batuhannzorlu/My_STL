@@ -20,32 +20,36 @@ public:
 	typedef bz_Iterator_forward<T> iterator;
 
 
-	//#########CONSTRUCTOR###################################
+	//////////////////////CONSTRUCTORS////////////////////////
 	bz_vector();
 	bz_vector(int _size);
 	bz_vector(int _val, int _size);
+	bz_vector(bz_vector<T>& vec);
+
 	~bz_vector();
 
-
+	///////////////////////ITERATORS//////////////////////////
 	bz_Iterator_forward<T>begin();
 	bz_Iterator_forward<T>end();
 
-	//#########MODIFIERS###################################
+	////////////////////////MODIFIERS/////////////////////////
 	void push_back(const T& val);
 	void pop_back();
-	iterator insert(const bz_Iterator_forward<T>&iterator, const T& val);
-	void erase(const bz_Iterator_forward<T>&iterator);
-	void erase(const bz_Iterator_forward<T>&iterator_start, const bz_Iterator_forward<T>&iterator_end);
+	iterator insert(bz_Iterator_forward<T>& iterator, const T& val);
+	void insert(bz_Iterator_forward<T> position,const bz_Iterator_forward<T>& first,const bz_Iterator_forward<T>& last);
+
+	void erase(const bz_Iterator_forward<T>& iterator);
+	void erase(const bz_Iterator_forward<T>& iterator_start, const bz_Iterator_forward<T>& iterator_end);
 	void clear();
 	void swap(bz_vector<T>& second_vec);
 	void shrink_to_fit();
 
-	//#########ELEMENT-ACCESS###################################
+	///////////////////ELEMENT-ACCESS///////////////////////
 	T& operator[](int index);
 	T front();
 	T back();
 	T at(int index);
-	//########CAPACITY###################################
+	//////////////////////CAPACITY//////////////////////////
 	inline bool empty();
 };
 
@@ -62,6 +66,13 @@ bz_vector<T>::bz_vector(int _val, int _size) {
 	this->size = _size;
 	current_pos = _size;
 	std::fill(this->begin(), this->end(), _val);
+}
+template<typename T>
+bz_vector<T>::bz_vector(bz_vector<T>& vec) {
+	
+	this->arr = new T[this->size];
+	this->insert(this->begin(), vec.begin(), vec.end());
+
 
 }
 template<typename T>
@@ -107,7 +118,7 @@ bool bz_vector<T>::empty() {
 }
 
 template<typename T>
-bz_Iterator_forward<T> bz_vector<T>::insert(const bz_Iterator_forward<T>&iterator, const T& val) {
+bz_Iterator_forward<T> bz_vector<T>::insert( bz_Iterator_forward<T>& iterator, const T& val) {
 
 
 	T t_val = val;
@@ -122,6 +133,7 @@ bz_Iterator_forward<T> bz_vector<T>::insert(const bz_Iterator_forward<T>&iterato
 		std::copy(arr, arr + current_pos + 1, temp_arr);
 		delete[] arr;
 		arr = temp_arr;
+		iterator = (this->begin() + insert_pos);
 	}
 
 	current_pos++;
@@ -129,6 +141,17 @@ bz_Iterator_forward<T> bz_vector<T>::insert(const bz_Iterator_forward<T>&iterato
 		std::swap(arr[i], t_val);
 
 	return (this->begin() + insert_pos);
+}
+
+template<typename T>
+void bz_vector<T> ::insert(bz_Iterator_forward<T> position, const bz_Iterator_forward<T>& first,const bz_Iterator_forward<T>& last) {
+
+	bz_Iterator_forward<T> it = first;
+	while (it != last) {
+		insert(position, *(it.m_ptr));
+		it++;
+	}
+
 }
 
 template<typename T>
@@ -153,9 +176,10 @@ template<typename T>
 void bz_vector<T>::swap(bz_vector<T>& second_vec) {
 
 	int big_one = second_vec.current_pos < this->current_pos ? this->current_pos : second_vec.current_pos;
+	T* temp_arr = nullptr;
 	if (second_vec.current_pos > this->current_pos) {
 		this->size = second_vec.size;
-		T* temp_arr = new T[this->size];
+		temp_arr = new T[this->size];
 		std::copy(arr, arr + current_pos + 1, temp_arr);
 		delete[] arr;
 		arr = temp_arr;
@@ -163,7 +187,7 @@ void bz_vector<T>::swap(bz_vector<T>& second_vec) {
 	else if (second_vec.current_pos < this->current_pos)
 	{
 		second_vec.size = this->size;
-		T* temp_arr = new T[second_vec.size];
+		temp_arr = new T[this->size];
 		std::copy(second_vec.arr, second_vec.arr + second_vec.current_pos + 1, temp_arr);
 		delete[] second_vec.arr;
 		second_vec.arr = temp_arr;
@@ -176,10 +200,10 @@ void bz_vector<T>::swap(bz_vector<T>& second_vec) {
 }
 
 template<typename T>
-void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator) {
+void bz_vector<T>::erase(const bz_Iterator_forward<T>& iterator) {
 
 
-	int _distance= std::distance(this->begin(), iterator);
+	int _distance = std::distance(this->begin(), iterator);
 	for (size_t i = _distance; i < current_pos; i++)
 		std::swap(arr[i], arr[i + 1]);
 
@@ -188,13 +212,13 @@ void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator) {
 
 // This is a temporary solution. better algorithm will be applied.
 template<typename T>
-void bz_vector<T>::erase(const bz_Iterator_forward<T>&iterator_start, const bz_Iterator_forward<T>&iterator_end) {
-	
+void bz_vector<T>::erase(const bz_Iterator_forward<T>& iterator_start, const bz_Iterator_forward<T>& iterator_end) {
+
 	//bz_vector<T>::iterator it = iterator_start;
 	//for(;  it!= iterator_end; it++)
 	//	this->erase(it); cout << "a" << endl;
-	
-	
+
+
 
 }
 template<typename T>
@@ -207,8 +231,8 @@ void bz_vector<T>::shrink_to_fit() {
 }
 
 template<typename T>
-T bz_vector<T> ::front() {return arr[0];}
+T bz_vector<T> ::front() { return arr[0]; }
 template<typename T>
 T bz_vector<T> ::back() { return arr[current_pos]; }
 template<typename T>
-T bz_vector<T> ::at(int index) {return arr[index];}
+T bz_vector<T> ::at(int index) { return arr[index]; }

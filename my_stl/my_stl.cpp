@@ -20,17 +20,55 @@ using namespace std;
 
 int main()
 {
-	map<int, char> i_c;
-	
-	
+	//{
+	//	
 
-	bz_vector<int> a;
-	a.push_back(1);
-	a.push_back(2);
-	a.push_back(3);
-	a.push_back(4);
-	a.erase(a.begin(), (a.begin() + 3));
-	cout<<a.front()<<endl;
+	//}
+	//
+
+
+	//map<int, char> mc;
+	//mc[0] = 'q';
+	//cout << mc[0];
+	{
+		bz_map<int, char> i_c;
+		i_c.insert(pair<int,char>(0, 'c'));
+		i_c.insert(pair<int, char>(1, 'w'));
+		i_c.insert(pair<int, char>(2, 'e'));
+		//i_c[1] = 'q';
+		bz_map<int, char> i_c2(i_c);
+		cout<<(i_c2.begin()+1)->second;
+		/*bz_vector<int>a;
+		bz_vector<int>b;
+
+		b.push_back(7);
+		b.push_back(8);
+		b.push_back(9);
+
+
+
+		a.push_back(1);
+		a.push_back(2);
+		a.push_back(3);
+		a.push_back(4);
+		a.push_back(5);
+
+		a.insert(a.begin() + 2, b.begin(), b.end());
+		bz_vector<int>c(a);
+
+		for (bz_vector<int>::iterator i = c.begin(); i != c.end(); i++)
+		{
+			cout << *i;
+		}*/
+	}
+	
+	//bz_vector<int> a;
+	//a.push_back(1);
+	//a.push_back(2);
+	//a.push_back(3);
+	//a.push_back(4);
+	//a.erase(a.begin(), (a.begin() + 3));
+	//cout<<a.front()<<endl;
 	/*std::sort(a.begin(), a.end());*/
 	//map<int, char> ic;
 	//ic[1] = 'c';
@@ -51,12 +89,22 @@ int main()
 	//	cout << it->second;
 	//}
 
-	bz_map<int, char>x ;
+	/*bz_map<int, char>x ;
 	bz_map<int, char>::iterator it;
 
-	//x.insert(pair<int, char>(9, 'a'));
-	//x.insert(pair<int,char>(7, 'b'));
-	//x.insert(pair<int, char>(3, 'q'));
+	x.insert(pair<int, char>(9, 'a'));
+	x.insert(pair<int,char>(7, 'b'));
+	x.insert(pair<int, char>(3, 'q'));
+	cout << x[7] << endl;*/
+
+
+
+	//bz_map<char,int>x;
+	//x.insert(pair<int, char>('a',6 ));
+	//x.insert(pair<int, char>('q', 7));
+	//x.insert(pair<int, char>('c', 4));
+	//cout << x['q']++;
+
 	//x.erase(x.begin(),x.begin()+1);
 	//cout<<x.begin()->second << endl;
 	//cout << (x.begin()+1)->second << endl;

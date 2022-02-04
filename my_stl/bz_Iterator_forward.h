@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "bz_vector.h"
+//#include "bz_list.h"
+#include<string>
 
 using namespace std;
 
@@ -17,12 +19,15 @@ public:
 	using reference = T1&;
 	pointer m_ptr;
 
+	string s = "Node";
+
 	bz_Iterator_forward(pointer ptr = nullptr) : m_ptr(ptr) {}
 
 	reference operator*() const { return *m_ptr; }
 	pointer operator->() { return m_ptr; }
 	bz_Iterator_forward& operator++() { m_ptr++; return *this; }
 	bz_Iterator_forward operator++(int) { bz_Iterator_forward tmp = *this; ++(*this); return tmp; }
+	
 	bz_Iterator_forward& operator +(int i) { m_ptr += i; return *this; }
 	bz_Iterator_forward& operator -(int i) { m_ptr -= i; return *this; }
 	

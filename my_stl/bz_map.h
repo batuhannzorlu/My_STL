@@ -49,9 +49,6 @@ public:
 		return it->second;
 	}
 
-
-
-
 };
 
 

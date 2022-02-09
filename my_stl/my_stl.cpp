@@ -18,27 +18,79 @@
 #include "bz_list.h"
 
 using namespace std;
+struct SinglyLinkedListNode {
+	int data;
+	SinglyLinkedListNode* next = nullptr;
+	SinglyLinkedListNode(int d) :data(d) {}
+};
+
+SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* llist, int data, int position) {
+
+	SinglyLinkedListNode* n_node = new  SinglyLinkedListNode(data);
+	SinglyLinkedListNode* temp_node;
+	SinglyLinkedListNode* temp_root = llist;
+	int i = 0;
+	while (i != position - 1) { temp_root = temp_root->next; i++; }
+
+	if (temp_root->next == nullptr) { temp_root->next = n_node; }
+
+	else { temp_node = temp_root->next; temp_root->next = n_node; n_node->next = temp_node; }
+
+
+	return llist;
+}
+
+
+
+
 
 int main()
 {
 
 
+
+
+	{
+		/*SinglyLinkedListNode* root = new SinglyLinkedListNode(1);
+		SinglyLinkedListNode* n1 = new SinglyLinkedListNode(2);
+		SinglyLinkedListNode* n2 = new SinglyLinkedListNode(3);
+		SinglyLinkedListNode* n3 = new SinglyLinkedListNode(4);
+		SinglyLinkedListNode* n4 = new SinglyLinkedListNode(5);
+		root->next = n1;
+		n1->next = n2;
+		n2->next = n3;
+		n3->next = n4;
+		insertNodeAtPosition(root, 6, 4);
+		
+		SinglyLinkedListNode* t_node=root;
+		while (root!=nullptr)
+		{
+			cout << root->data << "->";
+			root = root->next;
+			delete t_node;
+			t_node = root;
+		}*/
+
+	}
+
 	{
 		bz_list<int>x;
-		x.begin()++;
+		//x.begin()++;
 		x.push_front(1);
 		x.push_front(2);
 		x.push_front(3);
-		x.pop_back();
-		x.push_back(1);
-		cout << "X: " << x.begin()->val;
+		//x.pop_back();
+		/*x.push_back(1);*/
+		x.insert(x.begin()+3, 12);
+		/*cout << "X: " << x.begin()->val;*/
 		
-		/*bz_list<int>::iterator it = x.begin();
+		//cout << (x.begin() + 3)->val;
+		bz_list<int>::iterator it = x.begin();
 
 		for(;it!=x.end(); it++)
 		{
-			cout << it->val;
-		}*/
+			cout << it->val<<"->";
+		}
 
 		//x.push_front(1);
 		//x.push_front(1);
@@ -95,158 +147,158 @@ int main()
 		}*/
 	}
 
-	bz_vector<int> a;
-	a.push_back(1);
-	a.push_back(2);
-	a.push_back(3);
-	a.push_back(4);
-	a.begin()++;
-		/*cout<< ;*/
-		/*a.erase(a.begin(), (a.begin() + 3));
-		cout<<a.front()<<endl;*/
-		/*std::sort(a.begin(), a.end());*/
-		//map<int, char> ic;
-		//ic[1] = 'c';
-		//map<int, char>::iterator it = ic.begin();
+	//bz_vector<int> a;
+	//a.push_back(1);
+	//a.push_back(2);
+	//a.push_back(3);
+	//a.push_back(4);
+	//a.begin()++;
+	/*cout<< ;*/
+	/*a.erase(a.begin(), (a.begin() + 3));
+	cout<<a.front()<<endl;*/
+	/*std::sort(a.begin(), a.end());*/
+	//map<int, char> ic;
+	//ic[1] = 'c';
+	//map<int, char>::iterator it = ic.begin();
 
-		//for (size_t i = 0; i < 10; i++)
+	//for (size_t i = 0; i < 10; i++)
+	//{
+	//	ic[i] = i + 97;
+	//}
+
+
+	///*for (size_t i = 0; i < 10; i++)
+	//{
+	//	cout << ic[i];
+	//}*/
+	//for (; it != ic.end(); it++)
+	//{
+	//	cout << it->second;
+	//}
+
+	/*bz_map<int, char>x ;
+	bz_map<int, char>::iterator it;
+
+	x.insert(pair<int, char>(9, 'a'));
+	x.insert(pair<int,char>(7, 'b'));
+	x.insert(pair<int, char>(3, 'q'));
+	cout << x[7] << endl;*/
+
+
+
+	//bz_map<char,int>x;
+	//x.insert(pair<int, char>('a',6 ));
+	//x.insert(pair<int, char>('q', 7));
+	//x.insert(pair<int, char>('c', 4));
+	//cout << x['q']++;
+
+	//x.erase(x.begin(),x.begin()+1);
+	//cout<<x.begin()->second << endl;
+	//cout << (x.begin()+1)->second << endl;
+	//cout << (x.begin() + 2)->second << endl;
+
+	//int.insert(pair<int, char>(3, 'd'));
+	//int.insert(pair<int, char>(2, 'q'));
+
+
+	//shared_ptr<int>s(new int);
+	//shared_ptr<int>s1;
+	//s1 = s;
+	//cout << s.use_count() << endl;
+
+
+
+		/*shared_ptr<int>s(new int[1]);
+		shared_ptr<int>s1(new int[3]);
+		shared_ptr<int>s3(s);
+		s1 = s;
+		cout << s.use_count() << endl;*/
+		//bz_sharedptr<int>q(1);
+		//cout << q.use_count() << endl;
+		//bz_sharedptr<int>b(q);
+		////cout << q.use_count() << endl;
+		//bz_sharedptr<int>c;
+		//c = q;
+		//cout << q.use_count() << endl;
+
+		/*shared_ptr<int> int(new int);*/
+
+	/*	bz_vector<int> a;
+		bz_vector<int>b;
+
+		a.push_back(1);
+		a.push_back(2);
+		a.push_back(3);
+		a.push_back(4);
+		a.push_back(5);
+
+		a.erase(a.begin());*/
+
+
+		//cout << a.size << endl;
+		//a.shrink_to_fit();
+		//cout << a.size<<endl;
+
+		//bz_vector<int>::iterator it2 = a.begin();
+		//for (; it2 != a.end(); it2++)
 		//{
-		//	ic[i] = i + 97;
+		//	cout << *it2;
 		//}
 
+		//b.push_back(5);
+		//b.push_back(6);
+		//b.push_back(7);
+		//b.push_back(8);
+		//b.push_back(9);
+		//b.push_back(10);
+		///*	cout << b.current_pos;*/
+		//b.swap(a);
+		/*a[2] = 5;*/
+		//a.push_back(5);
+		//a.push_back(5);
+		//a.push_back(5);
+		//cout << a.size;
+		//cout << a.current_pos;
+		//a.push_back(6);
+		/*cout << *(a.begin() + 1);*/
+		/*a.pop_back();*/
+		/*a.push_back(7);*/
+		//cout << *it;
+		//cout << *(it++);
 
-		///*for (size_t i = 0; i < 10; i++)
+		//bz_vector<int>::iterator it = a.begin();
+		//for (; it != a.end(); it++)
 		//{
-		//	cout << ic[i];
-		//}*/
-		//for (; it != ic.end(); it++)
-		//{
-		//	cout << it->second;
+		//	cout << *it;
 		//}
 
-		/*bz_map<int, char>x ;
-		bz_map<int, char>::iterator it;
+	/*	cout << "" << endl;*/
 
-		x.insert(pair<int, char>(9, 'a'));
-		x.insert(pair<int,char>(7, 'b'));
-		x.insert(pair<int, char>(3, 'q'));
-		cout << x[7] << endl;*/
+			/*a.insert(a.begin() + 3, 7);*/
+		//bz_vector<int>::iterator it2 = b.begin();
+		//for (; it2 != b.end(); it2++)
+		//{
+		//	cout << *it2;
+		//}
 
+		/*bz_uniqueptr<int>r(1);*/
 
-
-		//bz_map<char,int>x;
-		//x.insert(pair<int, char>('a',6 ));
-		//x.insert(pair<int, char>('q', 7));
-		//x.insert(pair<int, char>('c', 4));
-		//cout << x['q']++;
-
-		//x.erase(x.begin(),x.begin()+1);
-		//cout<<x.begin()->second << endl;
-		//cout << (x.begin()+1)->second << endl;
-		//cout << (x.begin() + 2)->second << endl;
-
-		//int.insert(pair<int, char>(3, 'd'));
-		//int.insert(pair<int, char>(2, 'q'));
+		//*r = 12;
+		/*	cout << *r;*/
 
 
-		//shared_ptr<int>s(new int);
-		//shared_ptr<int>s1;
-		//s1 = s;
-		//cout << s.use_count() << endl;
+	/*	bz_sharedptr<int>int(1);
+		bz_sharedptr<int>y(1);
+		*int = 5;
+		*y = 8;*/
+		/*	cout << int.get() << endl;
+			cout << y.get() << endl;
+			int.swap(y);
+			cout << int.get();*/
 
 
-
-			/*shared_ptr<int>s(new int[1]);
-			shared_ptr<int>s1(new int[3]);
-			shared_ptr<int>s3(s);
-			s1 = s;
-			cout << s.use_count() << endl;*/
-			//bz_sharedptr<int>q(1);
-			//cout << q.use_count() << endl;
-			//bz_sharedptr<int>b(q);
-			////cout << q.use_count() << endl;
-			//bz_sharedptr<int>c;
-			//c = q;
-			//cout << q.use_count() << endl;
-
-			/*shared_ptr<int> int(new int);*/
-
-		/*	bz_vector<int> a;
-			bz_vector<int>b;
-
-			a.push_back(1);
-			a.push_back(2);
-			a.push_back(3);
-			a.push_back(4);
-			a.push_back(5);
-
-			a.erase(a.begin());*/
-
-
-			//cout << a.size << endl;
-			//a.shrink_to_fit();
-			//cout << a.size<<endl;
-
-			//bz_vector<int>::iterator it2 = a.begin();
-			//for (; it2 != a.end(); it2++)
-			//{
-			//	cout << *it2;
-			//}
-
-			//b.push_back(5);
-			//b.push_back(6);
-			//b.push_back(7);
-			//b.push_back(8);
-			//b.push_back(9);
-			//b.push_back(10);
-			///*	cout << b.current_pos;*/
-			//b.swap(a);
-			/*a[2] = 5;*/
-			//a.push_back(5);
-			//a.push_back(5);
-			//a.push_back(5);
-			//cout << a.size;
-			//cout << a.current_pos;
-			//a.push_back(6);
-			/*cout << *(a.begin() + 1);*/
-			/*a.pop_back();*/
-			/*a.push_back(7);*/
-			//cout << *it;
-			//cout << *(it++);
-
-			//bz_vector<int>::iterator it = a.begin();
-			//for (; it != a.end(); it++)
-			//{
-			//	cout << *it;
-			//}
-
-		/*	cout << "" << endl;*/
-
-				/*a.insert(a.begin() + 3, 7);*/
-			//bz_vector<int>::iterator it2 = b.begin();
-			//for (; it2 != b.end(); it2++)
-			//{
-			//	cout << *it2;
-			//}
-
-			/*bz_uniqueptr<int>r(1);*/
-
-			//*r = 12;
-			/*	cout << *r;*/
-
-
-		/*	bz_sharedptr<int>int(1);
-			bz_sharedptr<int>y(1);
-			*int = 5;
-			*y = 8;*/
-			/*	cout << int.get() << endl;
-				cout << y.get() << endl;
-				int.swap(y);
-				cout << int.get();*/
-
-
-				///*	shared_ptr<int> qs(new int);
-				//	qs.reset();*/
+			///*	shared_ptr<int> qs(new int);
+			//	qs.reset();*/
 
 
 

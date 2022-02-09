@@ -19,7 +19,6 @@ public:
 	using reference = T1&;
 	pointer m_ptr;
 
-	string s = "Node";
 
 	bz_Iterator_forward(pointer ptr = nullptr) : m_ptr(ptr) {}
 
@@ -41,9 +40,9 @@ public:
 	bz_Iterator_forward& operator -=(int i) { m_ptr -= i; return *this; }
 
 
-
-
 };
+
+
 
 //template<typename Type>
 //class Container<Type>::Iterator : public std::iterator<std::random_access_iterator_tag, Type>

@@ -219,7 +219,7 @@ bz_Iterator_forward_list<Node<T>> bz_list<T>::insert(bz_Iterator_forward_list<No
 
 
 template<typename T>
-bz_Iterator_forward_list<Node<T>> bz_list<T>::begin() {
+ bz_Iterator_forward_list<Node<T>> bz_list<T>::begin() {
 	return bz_Iterator_forward_list<Node<T>>(root);
 }
 

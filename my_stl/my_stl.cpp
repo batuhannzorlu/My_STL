@@ -16,6 +16,7 @@
 #include "bz_sharedptr.h"
 #include "bz_map.h"
 #include "bz_list.h"
+#include "bz_stack.h"
 
 using namespace std;
 struct SinglyLinkedListNode {
@@ -47,9 +48,16 @@ SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* llist, int data
 int main()
 {
 
+	bz_stack<int> m_s;
+	m_s.push(1);
+	std::cout << m_s.top() << std::endl;
+	m_s.push(2);
 
+	m_s.push(3);
 
-
+	m_s.push(4);
+	m_s.pop();
+	std::cout << m_s.top() << std::endl;
 	{
 		/*SinglyLinkedListNode* root = new SinglyLinkedListNode(1);
 		SinglyLinkedListNode* n1 = new SinglyLinkedListNode(2);
@@ -74,23 +82,23 @@ int main()
 	}
 
 	{
-		bz_list<int>x;
+	/*	bz_list<int>x;*/
 		//x.begin()++;
-		x.push_front(1);
-		x.push_front(2);
-		x.push_front(3);
-		//x.pop_back();
-		/*x.push_back(1);*/
-		x.insert(x.begin()+3, 12);
-		/*cout << "X: " << x.begin()->val;*/
-		
-		//cout << (x.begin() + 3)->val;
-		bz_list<int>::iterator it = x.begin();
+		//x.push_front(1);
+		//x.push_front(2);
+		//x.push_front(3);
+		////x.pop_back();
+		///*x.push_back(1);*/
+		///*x.insert(x.begin()+3, 12);*/
+		///*cout << "X: " << x.begin()->val;*/
+		//
+		////cout << (x.begin() + 3)->val;
+		//bz_list<int>::iterator it = x.begin();
 
-		for(;it!=x.end(); it++)
-		{
-			cout << it->val<<"->";
-		}
+		//for(;it!=x.end(); it++)
+		//{
+		//	cout << it->val<<"->";
+		//}
 
 		//x.push_front(1);
 		//x.push_front(1);

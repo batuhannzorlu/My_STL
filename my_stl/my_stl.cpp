@@ -20,7 +20,7 @@
 #include "bz_map.h"
 #include "bz_list.h"
 #include "bz_stack.h"
-#include "algorithm.h"
+#include "bz_algorithm.h"
 
 
 

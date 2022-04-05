@@ -46,6 +46,7 @@ public:
 
 	///////////////////ELEMENT-ACCESS///////////////////////
 	T& operator[](int index);
+	T& operator=(const bz_vector<T>& rhs);
 	T front();
 	T back();
 	T at(int index);
@@ -165,6 +166,13 @@ T& bz_vector<T>::operator[](int index)
 
 	return arr[index];
 
+}
+
+template<typename T>
+T& bz_vector<T>::operator=(const bz_vector<T>& rhs) {
+
+
+	return *this;
 }
 template<typename T>
 void bz_vector<T>::clear() {

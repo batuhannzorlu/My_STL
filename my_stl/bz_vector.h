@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include "bz_Iterator_forward.h"
+#include "bz_Iterator_reverse.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ public:
 public:
 
 	typedef bz_Iterator_forward<T> iterator;
-
+	typedef bz_Iterator_reverse<T> reverse_iterator;
 
 	//////////////////////CONSTRUCTORS////////////////////////
 	bz_vector();
@@ -32,6 +33,8 @@ public:
 	bz_Iterator_forward<T>begin();
 	bz_Iterator_forward<T>end();
 
+	bz_Iterator_reverse<T>rbegin();
+	bz_Iterator_reverse<T>rend();
 	////////////////////////MODIFIERS/////////////////////////
 	void push_back(const T& val);
 	void pop_back();
@@ -85,6 +88,15 @@ template<typename T>
 bz_Iterator_forward<T> bz_vector<T>::end() {
 
 	return  bz_Iterator_forward<T>(&arr[current_pos]);
+}
+
+template<typename T>
+bz_Iterator_reverse<T>bz_vector<T>::rbegin() {
+	return  bz_Iterator_reverse<T>(&arr[current_pos-1]);
+}
+template<typename T>
+bz_Iterator_reverse<T>bz_vector<T>::rend() {
+	return  bz_Iterator_reverse<T>(&(arr[0])-1);
 }
 
 

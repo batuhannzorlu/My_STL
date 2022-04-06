@@ -37,7 +37,7 @@ public:
 
 	////////////////////////MODIFIERS/////////////////////////
 	bz_Iterator_forward<pair<KEY, VALUE>> insert(const pair<KEY, VALUE>& _p);
-	void erase(const KEY& _p);
+	void erase( const KEY& _p);
 	void erase(bz_Iterator_forward<pair<KEY, VALUE>>&  position);
 	void erase(bz_Iterator_forward<pair<KEY, VALUE>>&  first, bz_Iterator_forward<pair<KEY, VALUE>>&  last);
 	void swap(bz_vector<pair<KEY, VALUE>>& map);
@@ -45,7 +45,8 @@ public:
 
 	///////////////////ELEMENT-ACCESS///////////////////////
 	VALUE& operator [](const KEY& k) { 
-		bz_Iterator_forward<pair<KEY, VALUE>> it = std::find_if(private_map->begin(), private_map->end(), [k](const pair<KEY, VALUE>& lhs) { return lhs.first == k; });
+		bz_Iterator_forward<pair<KEY, VALUE>> it = std::lower_bound(private_map->begin(), private_map->end(),k);
+
 		return it->second;
 	}
 
@@ -92,8 +93,8 @@ template<typename KEY, typename VALUE>
 bz_Iterator_forward<pair<KEY, VALUE>> bz_map<KEY, VALUE>::insert(const pair<KEY, VALUE>& _p) {
 
 	iterator it = NULL;
-	if (std::find(private_map->begin(), private_map->end(), _p) == private_map->end()) {
-		it = std::lower_bound(private_map->begin(), private_map->end(), _p, [](const pair<KEY, VALUE>& lhs, const pair<KEY, VALUE>& rhs) { return lhs.first < rhs.first; });
+	if (!std::binary_search(private_map->begin(), private_map->end(), _p)) {
+		it = std::lower_bound(private_map->begin(), private_map->end(), _p);
 		private_map->insert(it, _p);
 	}
 
@@ -102,9 +103,12 @@ bz_Iterator_forward<pair<KEY, VALUE>> bz_map<KEY, VALUE>::insert(const pair<KEY,
 
 template<typename KEY, typename VALUE>
 void bz_map<KEY, VALUE>::erase(const KEY& _p) {
+	//pair<KEY, VALUE>temp_pair = make_pair(_p, -1);
+	//iterator it = std::lower_bound(private_map->begin(), private_map->end(),[temp_pair](const pair<KEY, VALUE> element) {return element.first == temp_pair.first; });
+	///*if (it != private_map->end()) {
 
-	bz_Iterator_forward<pair<KEY, VALUE>> it = std::find_if(private_map->begin(), private_map->end(), [_p](const pair<KEY, VALUE>& lhs) { return lhs.first==_p; });
-	private_map->erase(it);
+	//}*/
+	
 
 }
 template<typename KEY, typename VALUE>
@@ -112,6 +116,8 @@ void bz_map<KEY, VALUE>::erase(bz_Iterator_forward<pair<KEY, VALUE>>& position) 
 
 template<typename KEY, typename VALUE>
 void bz_map<KEY, VALUE>::erase(bz_Iterator_forward<pair<KEY, VALUE>>&  first, bz_Iterator_forward<pair<KEY, VALUE>>&  last) {
+
+	while (first != last) { this->private_map->erase(first); first++; }
 
 }
 
